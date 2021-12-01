@@ -1,9 +1,9 @@
 # sh4190_SiqiHe_Assignment3
 
-- How to run your code? Any variable needs to be changed before we run your code (e.g., variable for directory)? \\
+- How to run your code? Any variable needs to be changed before we run your code (e.g., variable for directory)? \
 The code I submitted is python file and I changed the file python from absolute python to relative python. So you may not need to revise anything before you run my code.
 
-- Describe the results of the experiment in your own words. Compare the results of two approaches (e.g., SVM only vs PCA+SVM) and briefly discuss  why one works better/worse than the other.  \\
+- Describe the results of the experiment in your own words. Compare the results of two approaches (e.g., SVM only vs PCA+SVM) and briefly discuss  why one works better/worse than the other.  \
 For test image, I tried two approaches: SVM only vs PCA+SVM. For cross-validation, I used straitified Kfold, since stratified make sure that each fold of dataset has the same proportion of observations with a given label. I split data into 7 sets and fix the random state to ensure that the results are reproducible. 
 SVM only: As for svc parameters, I use GridSearchCV() to try different combination of parameters in svc, such as kernel and gamma. The best parameters are 'C': 1, 'gamma': 0.1, and 'kernel': 'linear' and the corresponding accuracy is 0.923. 
 PCA+SVM: In this method, I use pca to do dimension reduction. I adjust the n_components parameter for pca() several times and find out the best parameter is 120 here. As for svc parameters, I use GridSearchCV() to try different combination of parameters in svc. The best parameters are 'C': 1, 'gamma': 0.1, and 'kernel': 'linear' and the corresponding accuracy is 0.881. 
