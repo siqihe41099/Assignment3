@@ -19,3 +19,4 @@ In conclusion, using pca should not definitely make the results better or worse.
 - Briefly discuss the limitation(s). How can you improve it? 
 1. I did not use realign or segment this time, so I am not sure whether the results will be better if I apply realign and segment on the data. Next time, I may try it on matlab.
 2. This time, I use compute_epi_mask to find the mask. But I cannot determine whether this is the best mask. I think I can create mask manully instead of using existed function. And I can compare the results by using different masks.
+3. I fixed the random state. However, I found out that for some random states, the results are lower than 0.85. I haven't had an idea to solve the problem.
