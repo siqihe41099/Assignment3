@@ -6,9 +6,12 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.svm import SVC
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
+import numpy as np
 
 # import data
 labels = scipy.io.loadmat('./data/label.mat')['label']
+labels = labels.ravel()
+labels = np.array(labels).astype(int)
 
 # test
 img_test = nib.load('./data/sub-01/ses-test/func/sub-01_ses-test_task-fingerfootlips_bold.nii')
@@ -22,11 +25,14 @@ masked_data_test = apply_mask(img_test, mask_img_test)
 # We applied two methods on the data here. One is svm and another one is svm and pca.
 # method 1 svm
 cv = StratifiedKFold(n_splits=7, random_state=2, shuffle=True)
+# reference: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html
 svc = SVC()
+# reference: https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
 parameters = {'C':[1,5,10],
               'kernel':['linear', 'rbf'],
               'gamma':[0.1,0.2,0.3,0.5,0.8,'scale']}
 test_model_select = GridSearchCV(svc, parameters, cv=cv)
+# reference: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
 test_model_select.fit(masked_data_test, labels)
 print('The best parameters of svm are', test_model_select.best_params_)
 print('The corresponding accuracy is', test_model_select.best_score_)
@@ -34,6 +40,7 @@ print('The corresponding accuracy is', test_model_select.best_score_)
 
 # method 2 svm+pca
 pca = PCA(n_components=120,random_state=1)
+# reference: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
 data_reduced_test = pca.fit_transform(masked_data_test)
 
 svc = SVC()
