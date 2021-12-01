@@ -5,7 +5,7 @@ The code I submitted is python file and I changed the file python from absolute 
 
 - Describe the results of the experiment in your own words. Compare the results of two approaches (e.g., SVM only vs PCA+SVM) and briefly discuss  why one works better/worse than the other.  \
 
-For test image, I tried two approaches: SVM only vs PCA+SVM. For cross-validation, I used stratifiedkfold, since stratified make sure that each fold of dataset has the same proportion of observations with a given label. I split data into 7 sets and fix the random state to ensure that the results are reproducible. \
+For test image, I tried two approaches: SVM only vs PCA+SVM. For cross-validation, I used stratifiedkfold, since stratified make sure that each fold of dataset has the same proportion of observations with a given label. I split data into 7 sets and fix the random state to ensure that the results are reproducible. 
 SVM only: As for svc parameters, I use GridSearchCV() to try different combination of parameters in svc, such as kernel and gamma. The best parameters are 'C': 1, 'gamma': 0.1, and 'kernel': 'linear' and the corresponding accuracy is 0.923. \
 PCA+SVM: In this method, I use pca to do dimension reduction. I adjust the n_components parameter for pca() several times and find out the best parameter is 120 here. As for svc parameters, I use GridSearchCV() to try different combination of parameters in svc. The best parameters are 'C': 1, 'gamma': 0.1, and 'kernel': 'linear' and the corresponding accuracy is 0.881. \
 I think the results why pca worsen the accuracy is that using pca sometimes can lose some spatial information which is important for classification. However, both two results are larger than 0.85. 
